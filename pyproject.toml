@@ -1,0 +1,7 @@
+[project]
+name = "pdf-extractext"
+version = "0.1.0"
+description = "Lee pdf y resume con IA"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
