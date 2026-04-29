@@ -1,5 +1,5 @@
 import pytest
-from app.services.pdf_service import extraer_texto, validar_pdf
+from app.services.pdf_service import extraer_texto, validar_pdf, es_duplicado
 
 
 def test_extraer_texto_devuelve_string():
@@ -25,3 +25,17 @@ def test_validar_pdf_correcto():
     with open("tests/sample.pdf", "rb") as f:
         contenido = f.read()
     validar_pdf(contenido, "application/pdf")
+
+
+def test_detecta_duplicado():
+    checksums = ["abc123", "def456", "ghi789"]
+    assert es_duplicado("abc123", checksums) is True
+
+
+def test_no_es_duplicado():
+    checksums = ["abc123", "def456", "ghi789"]
+    assert es_duplicado("xyz999", checksums) is False
+
+
+def test_lista_vacia_no_es_duplicado():
+    assert es_duplicado("abc123", []) is False
